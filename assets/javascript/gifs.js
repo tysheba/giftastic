@@ -3,13 +3,26 @@
  "&limit=10&offset=0&rating=PG&lang=en"
 
  var feeling = $("#feeling-input").val();
- var buttonArr = {happy, sad, joyful, angry, curious, confused, disappointed }
+ var buttonArr = ["happy", "sad", "joyful", "angry", "curious", "confused", "disappointed" ]
 
  function setupBtn() {
-   for (var i=0; i<buttonArr.length; i++) {
-     $("#button").append(buttonArr[i]);
-   }
+
+  $("#buttons").empty();
+  for (var i=0; i<buttonArr.length; i++) {
+  var $btn = $("<button>");
+  $btn.addClass("feeling-btn");
+  $btn.attr("data-name", buttonArr[i]);
+  $btn.text(buttonArr[i]);
+  $("#buttons").append($btn);
  }
+}
+
+$("#add-button").on("click", function (event) {
+  event.preventDefault();
+  var newFeeling = $("#input").val().trim();
+  buttonArr.push(newFeeling);
+  setupBtn ();
+});
 
  $.ajax({
    url: queryURL,
