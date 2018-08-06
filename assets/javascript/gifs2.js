@@ -23,15 +23,11 @@ $("#add-button").on("click", function (event) {
   setupBtn ();
 });
 
-setupBtn();
-
-$(document).on("click", ".feeling-btn", showEmotion);
-
-function showEmotion () {
-  var emotion = $(this).attr("data-value")
-  console.log(emotion)
-
-  var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=My874J3ozBuVPh6WVzLd3QAFFDDgi5NP&q=" + emotion + 
+var displayGifs = function () {
+  subject = $(this).attr("data-value");
+  console.log(subject);
+ 
+ var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=My874J3ozBuVPh6WVzLd3QAFFDDgi5NP&q=" + subject + 
  "&limit=10&offset=0&rating=PG&lang=en"
   
  $.ajax({
@@ -39,8 +35,8 @@ function showEmotion () {
     method: "GET"
   }).then(function(response) {
       console.log(response);
-
-      // Storing an array of results in the results variable
+    
+  // Storing an array of results in the results variable
       var results = response.data;
 
       // Looping over every result item
@@ -70,8 +66,13 @@ function showEmotion () {
         $("#gifs").prepend(gifDiv);
       
       }
-
-
+ 
+ 
   });
+ 
+ };
+ 
 
-}
+// Calling the setupBtn function to display the intial buttons
+setupBtn();
+$(document).on("click", ".feelingBtn", displayGifs());
