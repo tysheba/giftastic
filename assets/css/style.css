@@ -1,0 +1,32 @@
+body {
+    background-color: #a0a7ac;;
+    background-image: url('assets/images/adult-mood2.jpeg');
+    background-repeat: no-repeat;
+}
+button {
+    margin: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    background-color: #a0a7ac;
+}
+
+#form {
+    float: right;
+}
+
+.item {
+    float: left;
+}
+
+#gifs {
+    max-width: 70%;
+}
+img {
+    margin: 10px;
+}
+
+/* change color of active button */

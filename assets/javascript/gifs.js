@@ -1,5 +1,7 @@
 
-var buttonArr = ["happy", "sad", "joyful", "angry", "curious", "confused", "disappointed" ]
+var buttonArr = ["Love", "Happiness", "Joy", "Excitement", "Thrill", "Amused", "Angry", "Sad", "Bored", "Sleepy", 
+"Tired", "Frustrated", "Disappointed", "Confused", "Sorry", "Scared"]
+
 var subject = "";
 
 function setupBtn() {
@@ -7,7 +9,7 @@ function setupBtn() {
   $("#buttons").empty();
   for (var i=0; i<buttonArr.length; i++) {
   var $btn = $("<button>");
-  $btn.addClass("feeling-btn");
+  $btn.addClass("feeling-btn btn-primary btn-lg active");
   $btn.attr('id', 'feelings');
   $btn.attr("data-value", buttonArr[i]);
   $btn.text(buttonArr[i]);
@@ -28,6 +30,7 @@ setupBtn();
 $(document).on("click", ".feeling-btn", showEmotion);
 
 function showEmotion () {
+
   var emotion = $(this).attr("data-value")
   console.log(emotion)
 
@@ -39,6 +42,7 @@ function showEmotion () {
     method: "GET"
   }).then(function(response) {
       console.log(response);
+      $("#gifs").empty();
 
       // Storing an array of results in the results variable
       var results = response.data;
@@ -59,10 +63,14 @@ function showEmotion () {
         var gifImage = $("<img>");
 
         // Giving the image tag a src attribute of a property pulled off the
-        // result item
-        gifImage.attr("src", results[i].images.fixed_height.url);
+        // result item and adding data attributes for the different property
+        gifImage.attr("src", results[i].images.fixed_height_still.url);
+        gifImage.attr("data-animate", results[i].images.fixed_height.url);
+        gifImage.attr("data-pause", results[i].images.fixed_height_still.url);
+        gifImage.attr("data-state", "still");
+        gifImage.addClass("gifImage");
 
-        // Appending the paragraph and personImage we created to the "gifDiv" div we created
+        // Appending the paragraph and gifImage to the "gifDiv" div
         gifDiv.append(p);
         gifDiv.append(gifImage);
 
@@ -75,3 +83,19 @@ function showEmotion () {
   });
 
 }
+
+$(document).on("click", ".gifImage", function() {
+  console.log("image was clicked")
+  var state = $(this).attr("data-state");
+  console.log(state);
+  // If the clicked image's state is animate, update its src attribute to what its data-still value is.
+  // Then, set the image's data-state to still
+  // Else set src to the data-animate value
+  if (state === "animate") {
+    $(this).attr("src", $(this).attr("data-pause"));
+    $(this).attr("data-state", "still");
+  } else {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+  }
+});
