@@ -50,21 +50,21 @@ function showEmotion () {
       // Looping over every result item
       for (var i = 0; i < results.length; i++) {
 
-        // Creating a div with the class "item"
+        // Creating a div with the class "col-4"
         var gifDiv = $("<div class='col-4'>");
 
-        // Storing the result items
+        // Storing the result items that we want to capture on the page
         var rating = results[i].rating;
         var title = results[i].title;
 
-        // Creating a paragraph tag with the result item's rating
+        // Creating a paragraph tag with the result item's title and rating
         var p = $("<p>").html("Rating: " + rating + "<p class='title'> Title: " + title + "</p>");
 
         // Creating an image tag
         var gifImage = $("<img>");
 
         // Giving the image tag a src attribute of a property pulled off the
-        // result item and adding data attributes for the different property
+        // result item and adding data attributes for the different property states
         gifImage.attr("src", results[i].images.fixed_height_still.url);
         gifImage.attr("data-animate", results[i].images.fixed_height.url);
         gifImage.attr("data-pause", results[i].images.fixed_height_still.url);
