@@ -12,19 +12,21 @@
 
 <div class="container-fluid">
   <h1> Daily Moods</h1>
+  
+<form id="form" class="form-group">
+    <label for="feeling-input">Add a Feeling</label>
+    <input type="text" class="form-control" id="input"><br>
 
+    <!-- Button triggers new button to be added -->
+    <input id="add-button" type="submit" value="Submit" class="btn btn-primary">
+  </form>
     <!-- Buttons will get Dumped Here  -->
   <div id="buttons"></div>
 
-  <form id="form">
-    <label for="feeling-input">Add a Feeling</label>
-    <input type="text" id="input"><br>
+  
 
-    <!-- Button triggers new button to be added -->
-    <input id="add-button" type="submit" value="Submit">
-  </form>
+  <div id="gifs" class="row"></div>
 
-  <div id="gifs"></div>
 
   </div>
 

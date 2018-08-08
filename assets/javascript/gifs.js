@@ -9,7 +9,7 @@ function setupBtn() {
   $("#buttons").empty();
   for (var i=0; i<buttonArr.length; i++) {
   var $btn = $("<button>");
-  $btn.addClass("feeling-btn btn-primary btn-lg active");
+  $btn.addClass("feeling-btn btn-warning btn-lg active");
   $btn.attr('id', 'feelings');
   $btn.attr("data-value", buttonArr[i]);
   $btn.text(buttonArr[i]);
@@ -51,13 +51,14 @@ function showEmotion () {
       for (var i = 0; i < results.length; i++) {
 
         // Creating a div with the class "item"
-        var gifDiv = $("<span class='item'>");
+        var gifDiv = $("<div class='col-4'>");
 
-        // Storing the result item's rating
+        // Storing the result items
         var rating = results[i].rating;
+        var title = results[i].title;
 
         // Creating a paragraph tag with the result item's rating
-        var p = $("<p>").text("Rating: " + rating);
+        var p = $("<p>").html("Rating: " + rating + "<p class='title'> Title: " + title + "</p>");
 
         // Creating an image tag
         var gifImage = $("<img>");
